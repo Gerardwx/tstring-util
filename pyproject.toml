@@ -1,0 +1,34 @@
+[project]
+name = "tstring-util"
+description = "Utilities for tstring"
+license = {text = "MIT" }
+version = "0.1"
+dependencies = []
+requires-python= ">= 3.14"
+readme = "README.md"
+authors = [
+    {name = "Gerard Weatherby"},
+    {email = "gerardw@alum.mit.edu"}
+]
+
+[project.urls]
+Homepage    = "https://github.com/Gerardwx/tstring-util"
+Repository  = "https://github.com/Gerardwx/tstring-util"
+Issues      = "https://github.com/Gerardwx/tstring-util/issues"
+Changelog   = "https://github.com/Gerardwx/tstring-util/releases"
+
+
+[tool.setuptools]
+package-dir = {"" = "src" }  # Tells setuptools that the root package is in the "src" directory
+
+[tool.setuptools.packages.find]
+where = ["src"]  # Specify the "src" directory to look for packages
+
+
+[project.optional-dependencies] 
+test = ['pytest']
+
+[build-system]
+requires = ["setuptools<=69.5.1", "wheel"]
+build-backend = "setuptools.build_meta"
+
