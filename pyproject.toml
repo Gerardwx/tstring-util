@@ -2,7 +2,7 @@
 name = "tstring-util"
 description = "Utilities for tstring"
 license = {text = "MIT" }
-version = "0.1"
+version = "0.2"
 dependencies = []
 requires-python= ">= 3.14"
 readme = "README.md"
