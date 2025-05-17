@@ -1,8 +1,7 @@
 import sys
 import io
 import inspect
-from string.templatelib import Template
-
+# noinspection PyUnresolvedReferences
 def render(template: Template, ctx: dict[str, object] | None = None) -> str:
     """
     Render a PEP 750 t-string, only treating interpolations whose
@@ -12,7 +11,15 @@ def render(template: Template, ctx: dict[str, object] | None = None) -> str:
     interpolations (including those consumed as args) and static text
     are rendered in order.
     """
-    ctx = ctx or globals()
+    if ctx is None:
+        # grab the caller’s frame
+        frame = inspect.currentframe().f_back
+        try:
+            # caller’s globals and locals
+            ctx = {**frame.f_globals, **frame.f_locals}
+        finally:
+            # avoid reference cycles
+            del frame
     strings = template.strings
     interps = template.interpolations
 
@@ -77,19 +84,4 @@ def render(template: Template, ctx: dict[str, object] | None = None) -> str:
 
     result = "".join(out)
     return result
-
-def hello(name):
-    print(f"hello {name}")
-
-who = 'bob'
-flavor = 'spicy'
-embedx = t'Call function {hello:!fn} {who} {flavor}'
-who = 'jane'
-
-r = render(embedx)
-print(r)
-# → Call function hello jane spicy
-embedn = t'Call function {hello} {who} {flavor}'
-r = render(embedn)
-print(r)
 

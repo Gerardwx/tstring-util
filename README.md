@@ -28,3 +28,25 @@ def test_lazy():
     assert r ==  "Call function hello jane spicy"
 ```
 
+## safe paths 
+**path(string.templatelib.Template)->Path**
+
+Converts t-string to a path. If any interpolations have a NUL or path separator in them, ValueError is raised.
+A special case of the first character of the first element being a separator is permitted to make paths absolute.
+
+
+### Example
+```
+from tstring import path
+config = '/etc'
+p = path(t'{config}/systemd')
+assert p.as_posix() ==  '/etc/systemd'
+```
+
+Invalid path:
+```
+ no_good = 'bob/carol'
+ path(t'{no_good}')
+ ```
+
+raises ValueError *Invalid character '/' in interpolation 'no_good'*

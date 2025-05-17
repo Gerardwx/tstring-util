@@ -4,4 +4,5 @@ tstring_logger = logging.getLogger(__name__)
 
 __version__ =  importlib.metadata.version('tstring-util')
 from tstring.lazy import render
+from tstring.cpath import path
 
