@@ -14,8 +14,6 @@ be invoked, and its stdout captured inline. Everything else is rendered in order
 ### Example
 ```
 from tstring import render
-
-
 def hello(name):
     print(f"hello {name}")
 
@@ -46,6 +44,7 @@ subprocess.run(clist)
 
 returns *ls: cannot access '/tmp;rm -fr /': No such file or directory*
 
+Note that using a non None separator may produce empty strings in list. See *test_split.py* for examples.
 ## safe paths 
 **path(string.templatelib.Template)->Path**
 
