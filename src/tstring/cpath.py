@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 from typing import Tuple
 
-from string.templatelib import Interpolation
 # noinspection PyUnresolvedReferences
-from string.templatelib import Template
+from string.templatelib import Interpolation, Template
+from tstring import iformat
 # define invalid characters (path separator(s) and NUL)
 SEPARATORS = {os.sep}
 if os.altsep:
@@ -37,20 +37,8 @@ def path(tmpl: Template) -> Path:
                 clean = s.strip(STRIP)
                 parts.append(clean)
 
-            case Interpolation(arg, name, conversion, format_spec):
-                if format_spec:
-                    raise ValueError(
-                        f"format specifiers not supported, {name} has {format_spec}"
-                    )
-
-                # perform conversion
-                match conversion:
-                    case None | 's':
-                        value = str(arg)
-                    case 'r':
-                        value = repr(arg)
-                    case 'a':
-                        value = ascii(arg)
+            case Interpolation(arg, name, conversion, format_spec) as inter:
+                value = iformat(inter)
 
                 # noinspection PyUnboundLocalVariable
                 is_null, sep = _check(value)

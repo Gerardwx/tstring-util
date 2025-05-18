@@ -28,6 +28,24 @@ def test_lazy():
     assert r ==  "Call function hello jane spicy"
 ```
 
+## safe split
+**def safe_split(tmpl: Template,sep:str|None=None) -> list[str]:**
+
+Splits a t-string while keeping interpolations intact. This can be used to safely split a string
+into input for subprocess
+
+### Example 
+```
+import subprocess
+from tstring import safe_split
+injection = '/tmp;rm -fr /'
+command = t'ls -l {injection}'
+clist = safe_split(command)
+subprocess.run(clist)
+```
+
+returns *ls: cannot access '/tmp;rm -fr /': No such file or directory*
+
 ## safe paths 
 **path(string.templatelib.Template)->Path**
 
