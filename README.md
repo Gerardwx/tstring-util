@@ -1,5 +1,5 @@
 # tstring-util
-Utlities for Python 3.14 t-string.
+Utilities for Python 3.14 t-string.
 
 Python 3.14 supports creating objects of type *string.templatelib.Template* by prefixing with a "t". 
 
