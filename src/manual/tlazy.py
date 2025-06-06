@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from pathlib import Path
 from tstring import render
 
 def hello(name):
