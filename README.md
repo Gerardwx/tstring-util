@@ -14,16 +14,16 @@ be invoked, and its stdout captured inline. Everything else is rendered in order
 ### Example
 ```
 from tstring import render
-def hello(name):
-    print(f"hello {name}")
+def double(value):
+    print(f"twice {value} is {2*value}")
 
 def test_lazy():
-    who = 'bob'
+    number = 1
     flavor = 'spicy'
-    embedx = t'Call function {hello:!fn} {who} {flavor}'
-    who = 'jane'
+    embedx = t'Call function {double:!fn} {number} {flavor}'
+    number = 2
     r = render(embedx)
-    assert r ==  "Call function hello jane spicy"
+    assert r ==  "Call function twice 2 is 4 spicy"
 ```
 
 ## safe split
